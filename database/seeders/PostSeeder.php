@@ -24,7 +24,7 @@ class PostSeeder extends Seeder
         		'imageable_type' => Post::class
         	]);
 
-        	// Llamamos a la relacion (tags) que creamos en Post Model
+        	// Llamamos a la relacion (tags) que creamos en Post Model y asignamos 2 etiquetas a cada post
         	$post->tags()->attach([
         		rand(1, 5),
         		rand(6, 10)
