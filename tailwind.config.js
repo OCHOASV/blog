@@ -18,4 +18,9 @@ module.exports = {
     },
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+
+    // Para deshabilitar la clase "container". Pero yo mejor hare mi propia clase container OCHOAcontainer
+    /*corePlugins:{
+        container: false,
+    }*/
 };

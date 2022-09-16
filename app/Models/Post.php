@@ -27,6 +27,6 @@ class Post extends Model
     // Relacion uno a uno Polimorfica - Posts > Images
     public function image(){
     	// El segundo parametro 'imageable' es el nombre del metodo que le dimos en el modelo Image
-        return $this->belongsToMany('App\Models\Image', 'imageable');
+        return $this->morphOne('App\Models\Image', 'imageable');
     }
 }

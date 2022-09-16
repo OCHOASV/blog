@@ -1,0 +1,15 @@
+.OCHOAcontainer{
+	@apply mx-auto max-w-7xl px-2;
+}
+
+@media(min-width: 640px){
+	.OCHOAcontainer{
+		@apply px-6;
+	}
+}
+
+@media(min-width: 1024px){
+	.OCHOAcontainer{
+		@apply px-8;
+	}
+}
