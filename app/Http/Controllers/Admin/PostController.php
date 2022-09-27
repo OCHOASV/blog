@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
+use App\Models\Tag;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -25,7 +28,19 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        /* Creamos un array del tipo atributo valor para Laravel Collective del tipo
+            {
+                "1": "aliquid",
+                "2": "officia",
+                "3": "laboriosam",
+                "4": "fugiat",
+                "5": "neque"
+            }
+        */
+        $categories = Category::pluck('name', 'id');
+        $tags = Tag::all();
+
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -34,9 +49,20 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        //
+        // Las reglas de validacion las hacemos en Requests/StorePostRequest
+
+        // Inserto el registro en la tabla Posts
+        $post = Post::create($request->all());
+
+        // Guardamos las etiquetas
+        if ($request->tags) {
+            // Recupero la relacion muchos a muchos de Post Model
+            $post->tags()->attach($request->tags);
+        }
+
+        return redirect()->route('admin.posts.edit', $post);
     }
 
     /**

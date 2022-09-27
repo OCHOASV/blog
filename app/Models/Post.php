@@ -9,6 +9,9 @@ class Post extends Model
 {
     use HasFactory;
 
+    // Con guarded solo especificamos los campos que NO seran llenos por asignación masiva, y con fillable tenemos que indicar los campos que SI seran llenos por asignación masiva y como hay mas campos SI que los No, usamos este metodo mas corto
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
     // Relacion uno a muchos Inversa - Posts > Users
     public function post(){
         return $this->belongsTo('App\Models\User');

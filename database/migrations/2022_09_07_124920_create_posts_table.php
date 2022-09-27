@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('extract');
             $table->longText('body');
-            // Acá solo pueden haber 2 valores, 0 => Borrador, 1 => Publicado
+            // Acá solo pueden haber 2 valores, 1 => Borrador, 2 => Publicado
             $table->enum('status', [1, 2])->default(1);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');

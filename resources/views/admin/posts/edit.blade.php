@@ -3,10 +3,10 @@
 @section('title', 'Admin Panel')
 
 @section('content_header')
-    <h1>Editar Etiqueta <strong>{{ $tag->name }}</strong></h1>
+    <h1>Editar Post: <strong>{{ $post->name }}</strong></h1>
 @stop
 
-@section('content')
+{{-- @section('content')
 	@if (session('info'))
 		<div class="alert alert-success alert-dismissible fade show" role="alert">
 			<strong>{{ session('info') }}</strong>
@@ -17,16 +17,16 @@
 	@endif
     <div class="card">
     	<div class="card-body">
-            {!! Form::model($tag, ['route'=>['admin.tags.update', $tag], 'method'=>'put']) !!}
-                {{-- Llamamos a nuestra Vista --}}
-                @include('admin.tags.partials.formEdit')
+            {!! Form::model($post, ['route'=>['admin.posts.update', $post], 'method'=>'put']) !!}
+                {{-- Llamamos a nuestra Vista
+                @include('admin.posts.partials.formCreatEdit')
 
-                {!! Form::submit('Actualizar Etiqueta', ['class'=>'btn btn-primary btn-md']) !!}
+                {!! Form::submit('Actualizar Post', ['class'=>'btn btn-primary btn-md']) !!}
 
             {!! Form::close() !!}
     	</div>
     </div>
-@stop
+@stop --}}
 
 @section('js')
 	<script type="text/javascript" src="{{ asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
