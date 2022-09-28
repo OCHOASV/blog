@@ -13,6 +13,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize()
     {
+        // Verifico si el userID enviado en el form es igual al del usuario autenticado y lo dejo pasar
         if ($this->user_id == auth()->user()->id) {
             return true;
         }
@@ -31,7 +32,8 @@ class StorePostRequest extends FormRequest
         $rules = [
             'name' => 'required',
             'slug' => 'required|unique:posts',
-            'status' => 'required|in:1,2'
+            'status' => 'required|in:1,2',
+            'file' => 'image'
         ];
 
         if ($this->status == 2) {

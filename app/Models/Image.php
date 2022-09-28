@@ -9,6 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['url'];
+
     // Definimos que es una Relacion Polimorfica
     // El nombre del metodo es el nombre del campo que le dimos en la tabla antes del guion bajo
     public function imageable(){

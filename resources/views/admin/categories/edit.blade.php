@@ -41,14 +41,6 @@
 @stop
 
 @section('js')
-	<script type="text/javascript" src="{{ asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
-	<script type="text/javascript">
-		$(document).ready( function() {
-			$("#name").stringToSlug({
-				setEvents: 'keyup keydown blur',
-				getPut: '#slug',
-				space: '-'
-			});
-		});
-	</script>
+	{{-- Llamamos a nuestro archivo de js --}}
+    @include('admin.jsHelpers')
 @endsection

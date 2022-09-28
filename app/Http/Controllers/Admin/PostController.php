@@ -8,6 +8,8 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Http\Requests\StorePostRequest;
+// Para las imagenes
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -55,6 +57,16 @@ class PostController extends Controller
 
         // Inserto el registro en la tabla Posts
         $post = Post::create($request->all());
+
+        // Si han subido imagen
+        if ($request->file('file')) {
+            // Movemos la imagen de tmp a la carpeta posts
+            $imgURL = Storage::put('posts', $request->file('file'));
+            // Guardamos la imagen con la relacion
+            $post->image()->create([
+                'url' => $imgURL
+            ]);
+        }
 
         // Guardamos las etiquetas
         if ($request->tags) {

@@ -17,7 +17,7 @@
 	@endif --}}
     <div class="card">
     	<div class="card-body">
-            {!! Form::open(['route'=>'admin.posts.store']) !!}
+            {!! Form::open(['route'=>'admin.posts.store', 'files' => true]) !!}
                 {{-- Llamamos a nuestra Vista --}}
                 @include('admin.posts.partials.formCreatEdit')
 
@@ -28,7 +28,23 @@
     </div>
 @stop
 
+@section('css')
+    <style>
+        .imgCreatePost{
+            position: relative;
+            padding-bottom: 50%;
+        }
+
+        .imgCreatePost img{
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+@stop
+
 @section('js')
 	{{-- Llamamos a nuestro archivo de js --}}
-    @include('admin.posts.partials.jsHelpers')
+    @include('admin.jsHelpers')
 @endsection

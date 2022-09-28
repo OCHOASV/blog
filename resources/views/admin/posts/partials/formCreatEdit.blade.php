@@ -51,6 +51,24 @@
 </div>
 
 <div class="form-group">
+    <p class="font-weight-bold">Imagen</p>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="form-group">
+                {!! Form::file('file', ['class' => 'form-control-file','id'=>'file', 'accept' => 'image/*']) !!}
+            @error('file')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+            </div>
+            <div class="imgCreatePost">
+                <img name="picture" id="picture" src="https://cdn.pixabay.com/photo/2022/07/03/20/45/bee-7299967_960_720.jpg" alt="">
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+<div class="form-group">
     {!! Form::label('extract', 'Resumen') !!}
     {!! Form::textarea('extract', null, ['class'=>'form-control', 'placeholder'=>'Resumen del Post', 'rows' => 5]) !!}
     @error('extract')
