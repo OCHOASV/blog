@@ -61,7 +61,7 @@
             @enderror
             </div>
             <div class="imgCreatePost">
-                <img name="picture" id="picture" src="https://cdn.pixabay.com/photo/2022/07/03/20/45/bee-7299967_960_720.jpg" alt="">
+                <img name="picture" id="picture" src="@isset ($post->image) {{ Storage::url($post->image->url) }} @else https://cdn.pixabay.com/photo/2022/07/03/20/45/bee-7299967_960_720.jpg @endisset" alt="">
             </div>
         </div>
         <div class="col"></div>

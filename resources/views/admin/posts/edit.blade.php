@@ -6,7 +6,7 @@
     <h1>Editar Post: <strong>{{ $post->name }}</strong></h1>
 @stop
 
-{{-- @section('content')
+@section('content')
 	@if (session('info'))
 		<div class="alert alert-success alert-dismissible fade show" role="alert">
 			<strong>{{ session('info') }}</strong>
@@ -17,8 +17,8 @@
 	@endif
     <div class="card">
     	<div class="card-body">
-            {!! Form::model($post, ['route'=>['admin.posts.update', $post], 'method'=>'put']) !!}
-                {{-- Llamamos a nuestra Vista
+            {!! Form::model($post, ['route'=>['admin.posts.update', $post], 'method'=>'put', 'files' => true]) !!}
+                {{-- Llamamos a nuestra Vista --}}
                 @include('admin.posts.partials.formCreatEdit')
 
                 {!! Form::submit('Actualizar Post', ['class'=>'btn btn-primary btn-md']) !!}
@@ -26,17 +26,25 @@
             {!! Form::close() !!}
     	</div>
     </div>
-@stop --}}
+@stop
+
+@section('css')
+    <style>
+        .imgCreatePost{
+            position: relative;
+            padding-bottom: 50%;
+        }
+
+        .imgCreatePost img{
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+@stop
 
 @section('js')
-	<script type="text/javascript" src="{{ asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
-	<script type="text/javascript">
-		$(document).ready( function() {
-			$("#name").stringToSlug({
-				setEvents: 'keyup keydown blur',
-				getPut: '#slug',
-				space: '-'
-			});
-		});
-	</script>
+	{{-- Llamamos a nuestro archivo de js --}}
+    @include('admin.jsHelpers')
 @endsection
