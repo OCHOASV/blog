@@ -1,12 +1,12 @@
 <div>
-    {{-- @if (session('info'))
+    @if (session('info'))
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 			<strong>{{ session('info') }}</strong>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-	@endif --}}
+	@endif
 	<div class="card">
 		<div class="card-header">
 			{{-- Con wire:model="search" sincronizo este input con la variable $search del controlador Post de Livewire y si imprimo {{ $search }} aparece lo que escribo en el input automaticamente --}}

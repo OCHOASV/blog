@@ -1,4 +1,5 @@
-{!! Form::hidden('user_id', auth()->user()->id) !!}
+{{-- Este ID se manejara con el Observer --}}
+{{-- {!! Form::hidden('user_id', auth()->user()->id) !!} --}}
 
 <div class="form-group">
     {!! Form::label('name', 'Nombre') !!}

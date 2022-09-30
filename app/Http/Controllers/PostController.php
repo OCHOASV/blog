@@ -17,6 +17,9 @@ class PostController extends Controller
     }
 
     public function show(Post $post){
+        // Verificacion del estado de un post
+        $this->authorize('statusPost', $post);
+
         $similares = Post::where('category_id', $post->category_id)
         	->where('status', 2)
         	->where('id', '!=', $post->id)

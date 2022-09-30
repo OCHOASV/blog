@@ -96,6 +96,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        // Pongo en marcha la verificacion del usuario en sesion, llamando al metodo de la Policy
+        $this->authorize('authorPost', $post);
+
         $categories = Category::pluck('name', 'id');
         $tags = Tag::all();
         return view('admin.posts.edit', compact('post', 'categories', 'tags'));
@@ -110,6 +113,8 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        $this->authorize('authorPost', $post);
+
         $post->update($request->all());
 
         // Si en el form viene una imagen en file
@@ -134,10 +139,10 @@ class PostController extends Controller
             }
         }
 
-        // Guardamos las etiquetas
+        // Guardamos las etiquetas con sync para que no se dupliquen los tags
         if ($request->tags) {
             // Recupero la relacion muchos a muchos de Post Model
-            $post->tags()->attach($request->tags);
+            $post->tags()->sync($request->tags);
         }
 
         return redirect()->route('admin.posts.edit', $post)->with('info', "Post $post->name actualizado con Exito!!!");
@@ -151,6 +156,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $this->authorize('authorPost', $post);
+        $post->delete();
+        return redirect()->route('admin.posts.index')->with('info', "Post $post->name eliminado con Exito!!!");
     }
 }

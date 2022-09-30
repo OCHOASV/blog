@@ -13,13 +13,8 @@ class PostRequest extends FormRequest
      */
     public function authorize()
     {
-        // Verifico si el userID enviado en el form es igual al del usuario autenticado y lo dejo pasar
-        if ($this->user_id == auth()->user()->id) {
-            return true;
-        }
-        else{
-            return false;
-        }
+        // Este permiso lo manejo con el Observer
+        return true;
     }
 
     /**
