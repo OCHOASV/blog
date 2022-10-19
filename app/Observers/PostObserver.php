@@ -17,7 +17,10 @@ class PostObserver
     public function creating(Post $post)
     {
         // Le vamos a agregar al objeto post el ID del usuario en sesion, esto para evitar enviar el ID desde el formolario
-        $post->user_id = auth()->user()->id;
+        // Pero tambien vamos a indicarle que no haga esto si los post se estan creando en consola, esto es para evitar error con los seeders
+        if (! \App::runningInConsole()) {
+            $post->user_id = auth()->user()->id;
+        }
     }
 
     /**
