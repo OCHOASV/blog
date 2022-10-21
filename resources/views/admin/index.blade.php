@@ -7,5 +7,6 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <p>Acá quiero imprimir el rol del usuario</p>
+    {{ $user }}
 @stop
