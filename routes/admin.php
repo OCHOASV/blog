@@ -6,12 +6,16 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RoleController;
 
 // Con el Middleware protegemos toda la ruta con el permiso
 Route::get('', [HomeController::class, 'index'])->middleware('can:admin.home')->name('admin.home');
 
 // Ruta que maneja los Usuarios y Perfiles, solo 3
 Route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->names('admin.users');
+
+// Ruta que maneja los Roles y Permisos
+Route::resource('roles', RoleController::class)->names('admin.roles');
 
 // Ruta que maneja las Categorías
 Route::resource('categories', CategoryController::class)->except('show')->names('admin.categories');

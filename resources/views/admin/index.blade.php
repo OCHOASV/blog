@@ -7,6 +7,20 @@
 @stop
 
 @section('content')
-    <p>Acá quiero imprimir el rol del usuario</p>
-    {{ $user }}
+	<div class="card">
+    	<div class="card-body">
+			<div class="form-group">
+			    <p>Roles del Usuario</p>
+			    @foreach ($roles as $role)
+			        <label class="mr-2">
+			            {{ $role->name }}
+			        </label>
+			    @endforeach
+			    @error('roles')
+			        <br>
+			        <span class="text-danger">{{ $message }}</span>
+			    @enderror
+			</div>
+		</div>
+	</div>
 @stop
