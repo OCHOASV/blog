@@ -6,13 +6,34 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
     public function index(){
-    	$posts = Post::where('status', 2)
-    		->latest('id')
-    		->paginate(8);
+        // Uso de Cache con Archivos (file)
+        // Pregunto si hay paginación
+        if (request()->page) {
+            // Si la hay, creo el nombre del file que almacenara el cache junto con el numero de pagina enviada en request
+            $key = 'post'.request()->page;
+        } else {
+            // Sino, solo creo el nombre del file que guardara la cache
+            $key = 'post';
+        }
+
+        // Pregunto si ya hay un file en cache
+        if (Cache::has($key)) {
+            // Recupero el file llamado posts
+            $posts = Cache::get($key);
+        } else {
+            $posts = Post::where('status', 2)
+                ->latest('id')
+                ->paginate(8);
+
+            // Guardo en cache, nombre del file y valor, se puede poner tiempo que dure en cache tambien
+            Cache::put($key, $posts);
+        }
+
     	return view('posts.index', compact('posts'));
     }
 

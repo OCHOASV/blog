@@ -10,6 +10,8 @@ use App\Models\Tag;
 use App\Http\Requests\PostRequest;
 // Para las imagenes
 use Illuminate\Support\Facades\Storage;
+// Para la Cache
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -75,6 +77,9 @@ class PostController extends Controller
             ]);
         }
 
+        // Limpiamos la cache
+        Cache::flush();
+
         // Guardamos las etiquetas
         if ($request->tags) {
             // Recupero la relacion muchos a muchos de Post Model
@@ -135,6 +140,9 @@ class PostController extends Controller
             }
         }
 
+        // Limpiamos la cache
+        Cache::flush();
+
         // Guardamos las etiquetas con sync para que no se dupliquen los tags
         if ($request->tags) {
             // Recupero la relacion muchos a muchos de Post Model
@@ -154,6 +162,10 @@ class PostController extends Controller
     {
         $this->authorize('authorPost', $post);
         $post->delete();
+
+        // Limpiamos la cache
+        Cache::flush();
+
         return redirect()->route('admin.posts.index')->with('info', "Post $post->name eliminado con Exito!!!");
     }
 }
