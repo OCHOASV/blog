@@ -1,2 +1,2 @@
 # blogLaravel
- Blog del Curso Laravel
+ Blog Laravel
